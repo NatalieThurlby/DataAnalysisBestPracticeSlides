@@ -96,13 +96,9 @@ Who are we and why do we care about reproducible research?
 
 ## Introductions: Your turn!
 
-Get into groups of around 5 people.
-Take it in turns to introduce yourself to your group (1 min each)
+Go to: [hackmd.io/@nataliethurlby/ROAR](https://hackmd.io/@nataliethurlby/ROAR/edit)
 
-Tell them:
- * Your name
- * Your research area
- * Why you came here today
+Introduce yourself by writing: _Your Name + Your university and department + an emoji that represents your research + an emoji that represents your week._
 
 --- 
 

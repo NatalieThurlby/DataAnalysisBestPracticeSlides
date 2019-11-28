@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reproducible Research</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Reproducible Research">
+  <meta name="author" content="Natalie Thurlby">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="../librariesNew/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="../librariesNew/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="../librariesNew/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="../librariesNew/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../librariesNew/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="../librariesNew/frameworks/io2012/js/slides" 
+    src="../librariesNew/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Reproducible Research</h1>
+    <h2>Data Analysis Best Practice</h2>
+    <p>Natalie Thurlby<br/>Data scientist, Jean Golding Institute</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.title-slide {
+  background-color: #750A50
+}
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #FFFFFF
+}
+em {
+  font-style: italic
+}
+strong {
+  font-weight: bold;
+</style>
+
+<h2>Core concepts in reproducibility</h2>
+
+<div style='float:left;width:48%;' class='centered'>
+  <h3>Content</h3>
+
+<ol>
+<li>Four issues causing irreproducible research.</li>
+<li>Tools and practices to encourage reproducible research.</li>
+<li>Building up a mental model of reproducible research.</li>
+</ol>
+
+</div>
+<div style='float:right;width:48%;'>
+  <h3>Format</h3>
+
+<ul>
+<li><strong>Short lectures from me:</strong>  Link to slides is on the GitHub repo <a href="http://www.tinyurl.com/uob_roar">tinyurl.com/uob-roar</a>.</li>
+<li><strong>Interspersed with discussions and a smidge of R, by you</strong>: Katie, Rob, Jackie and I are happy to be involved in discussions and answer any questions.
+Please make sure you have RStudio open and ready now.</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>What is reproducibility?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p>The matrix below (from <a href="https://the-turing-way.netlify.com/">The Turing Way</a>) gives a useful set of definitions:</p>
+
+<div class="rimage center"><img src="fig/reproducibility_matrix.jpeg" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="100%" class="plot" /></div>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>Results are <strong>reproducible</strong> if we get the same result when we do the research again using the same analysis, on the same data.</li>
+<li>Results are <strong>replicable</strong> if we get the same result when we do the research again using the same analysis, on different (newly collected) data.</li>
+<li>Results are <strong>robust</strong> if we get the same result when we do the research again using different analysis, on the same data.</li>
+<li>Results are <strong>generalisable</strong> if we get the same result when we do the research again using a different analysis, on different (newly collected) data.</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>What do we mean by the &quot;Same Result&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <p>Often the starting point discussion around reproducible research centres around <strong>p-values</strong> and <strong>effect size</strong>.</p>
+
+<ul>
+<li><strong>Effect Sizes</strong> measure the strength of a relationship between two variables. There are different types of effect size, for example Cohen&#39;s D or the Pearson corellation coefficient.</li>
+<li><strong>P-values</strong> measure the probability of getting as convincing a result by chance assuming that there is no effect - they range between 0 and 1. The commonly used threshold for a &quot;statistically significant&quot; result is p &lt; 0.05.</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <h3>How often do you think that the papers you read would reproduce?</h3>
+
+<p><br>
+Any guesses?</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>The reproducibility crisis</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><strong>Less than 40%</strong> of replications of well-known Psychology studies had significant results:</p>
+
+<div class="rimage center"><img src="fig/psychology-replication-paper.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="100%" class="plot" /></div>
+
+<p>A similar study found that only <strong>11%</strong> of replications of well-known cancer biology studies had significant results. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Most researchers think there is a problem with reproducibility</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <div class="rimage center"><img src="fig/is-there-a-crisis.jpg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" class="plot" /></div>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Baker, Monya. &quot;1,500 scientists lift the lid on reproducibility.&quot; Nature News 533.7604 (2016): 452</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Most researchers have failed to reproduce a result</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <div class="rimage center"><img src="fig/failed-to-reproduce.jpg" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="100%" class="plot" /></div>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Of the 1576 scientists surveyed, <strong>over 70% of scientists surveyed have experienced failure to reproduce other&#39;s results</strong> and <strong>over 50% have failed to reproduce their own results</strong>.</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Why did it take us so long to notice?</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Un&quot;FAIR&quot; data and analyses</h3>
+
+<p>It used to be harder to share and access data and analyses. FAIR principles describe how data/analyses need to be stored in order for them to be used by others:</p>
+
+<ul>
+<li><strong>F</strong>indable: People need to know the data exists (e.g. link to in your paper)</li>
+<li><strong>A</strong>ccessible: Data needs to be available in a format that humans and computers can understand (e.g. downloadable on the internet)</li>
+<li><strong>I</strong>nteroperable: The data needs to be in a format that people usually use.</li>
+<li><strong>R</strong>eusable: Data must be clearly licensed so people know if they&#39;re allowed to reuse them.</li>
+</ul>
+
+<p>If data is messy, unlabelled, or doesn&#39;t exist no one can check if the result is correct. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Why is it happening?</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Data storage mistakes</h3>
+
+<ul>
+<li>High-profile studies have been shown to be wrong because of problems like accidentally deleting columns of excel files, or rewriting important values.</li>
+</ul>
+
+<h3>Data analysis mistakes</h3>
+
+<ul>
+<li>When data analysis is carried out by clicking on buttons in a certain order (using a Graphical User Interface or GUI), they can accidentally be clicked in the wrong order and give incorrect results. </li>
+<li>People&#39;s code doesn&#39;t always do what they think it does.</li>
+</ul>
+
+<div style='float:left;width:48%;' class='centered'>
+  
+</div>
+<div style='float:right;width:48%;'>
+  
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Why is it happening?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <h3>P-hacking</h3>
+
+<p>P-hacking is a catch-all term for making p-values appear smaller than they are. </p>
+
+<p><strong>Examples of p-hacking:</strong></p>
+
+<ul>
+<li>Collecting samples until your sample size gives you p &lt; 0.05</li>
+<li>Choosing different statistical tests until you get p &lt; 0.05</li>
+<li>Running lots of statistical tests and not correcting for mulitple hypotheses</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <div class="rimage center"><img src="fig/forking_paths.jpg" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="60%" class="plot" /></div>
+
+<div class="rimage center"><img src="fig/p-curve.jpg" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="45%" class="plot" /></div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h3>HARKing = Hypothesising After Results are Known</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p>Instead of trying the same hypothesis with 20 different methodologies, you can get the same effect (finding erroneous &quot;significant&quot; results) by testing 20 different hypotheses and decide what you hypothesised afterwards.</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <div class="rimage center"><img src="fig/jellybean_xkcd.jpg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="45%" class="plot" /></div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>What are the chances?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Time for a simulation in R. </p>
+
+<p>Please open Rstudio!</p>
+
+<!--
+
+```r
+n_reps = 100000
+n_tests = 5
+significance_cutoff = 0.05
+
+total_wins = 0
+for(i in 1:n_reps){
+if( sum(runif(n_tests,0,1) < significance_cutoff) ){
+  total_wins = total_wins + 1
+}
+}
+print(total_wins/n_reps)
+```
+
+```
+[1] 0.22703
+```
+-->
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Publication Bias</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p>There is bias in what is published. We&#39;re more interested in positive results.
+Publication bias rewards researchers for p-hacking, and also wastes time since researchers will repeat experiments with negative results.</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>It&#39;s not always intuitive how damaging extra tests can be. Researchers may think they&#39;ve triedless models than they think, and we just really want to find out &quot;the truth&quot;, so it&#39;s easy to say &quot;just one more&quot;. </p>
+
+<ul>
+<li>Be careful of doing too many statistical tests (it&#39;s easy to accidentally p-hack)</li>
+<li>If you&#39;re ever unsure about if what you&#39;re doing is right, consult a statistician.</li>
+<li>If you need convincing, simulations are very convincing.</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Discussion!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We&#39;ve mentioned some barriers to reproducibility. </p>
+
+<!--* P-hacking
+* HARKing
+* Un"FAIR"ness. 
+* Data storage/analysis mistakes
+* Publication Bias -->
+
+<p>In small groups (around 5 people), first write down the issues you remember on the paper in front of you in one colour.
+<strong>(3 minutes)</strong></p>
+
+<p>Then discuss how you think these reproducibility problems mentioned might affect your fields. 
+<strong>(5 minutes)</strong></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Tools and practices to aid us in research</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <h3>Make data available</h3>
+
+<ul>
+<li>Either share your original data freely</li>
+<li>Even sensitive data (using secure storage <a href="https://data.bris.ac.uk/data/">data.bris</a> and a data access committee)</li>
+<li>Make anonymised data available.</li>
+<li>Make synthesised data available.</li>
+<li>Whatever you make available, make sure that it is labelled and described.</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <div class="rimage center"><img src="fig/github.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="50%" class="plot" /></div>
+
+<div class="rimage center"><img src="fig/osf.jpeg" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="60%" class="plot" /></div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Make analysis available</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><strong>Scripts</strong> make analysis available by writing scripts, they:</p>
+
+<ul>
+<li>Describe exactly what your analysis is and can be shared with others</li>
+<li>Can be written in any programming language (e.g R, Python)</li>
+<li>Always perform in the same order and get the same result</li>
+<li>Those written in non-proprietry software (e.g. R and python, rather than SPSS/Stata) are more accessible.</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><strong>Literate programming</strong> = scripts + describing what&#39;s happening</p>
+
+<p>Ways to do it:</p>
+
+<ul>
+<li>Comments</li>
+<li>Documentation and README files (e.g. on GitHub)</li>
+<li>Notebooks (e.g. RMarkdown, Jupyter)</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Version Control</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>You will want different versions of your scripts/notebooks.</li>
+<li>Nothing is worse than knowing your program worked earlier.</li>
+<li>Having files named <code>analysis_ver32_final_actually_final.R</code> is not fun and it&#39;s easy to make mistakes.</li>
+<li>When you come back to your work later, you won&#39;t be able to remember which is the <code>for_realsies_final_file.txt</code></li>
+</ul>
+
+<p>Version control is a system for avoiding these problems.</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <div class="rimage center"><img src="fig/final_version.jpg" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="70%" class="plot" /></div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Pre-registration</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><em>The first principle is you must not fool yourself — and you are the easiest person to fool</em> - Richard Feynman</p>
+
+<div class="rimage center"><img src="fig/feynman.jpg" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="50%" class="plot" /></div>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Pre-registering your analyis is saying what analysis you are going to do in advance, including:</p>
+
+<ul>
+<li>which variables you are going to look at</li>
+<li>what sample size you will aim for</li>
+<li>what you will exclude from your sample</li>
+<li>what variables you are going to correct for</li>
+</ul>
+
+<p><strong>Pre-registration is only for analyses where you are seeking to confirm a hypothesis</strong></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2><a href="https://cos.io/rr/">Registered reports</a></h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Registered reports are a new model for publishing papers. Instead of applying to journals once you have your results, you apply while after you have made plans for research and analysis, but before you have collected your data.</p>
+
+<p>Extra great for research(ers) because:</p>
+
+<ul>
+<li>You can publish non-significant results </li>
+<li>We will all be able to benefit from knowing what <strong>doesn&#39;t</strong> work.</li>
+</ul>
+
+<div class="rimage center"><img src="fig/reg_reports.jpg" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="100%" class="plot" /></div>
+
+<div style='float:left;width:48%;' class='centered'>
+  
+</div>
+<div style='float:right;width:48%;'>
+  
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Draw a &quot;concept map&quot; about reproducibility</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><strong>Task:</strong></p>
+
+<ol>
+<li>Create concept maps in small groups (<strong>10 mins</strong>)</li>
+<li>Feed back to the group </li>
+</ol>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><strong>How-to:</strong></p>
+
+<p>We already have some of the barriers to reproducibility written down (e.g. publication bias, p-hacking), so add to this by writing some of the solutions to the reproducibility crisis to your paper e.g.: pre-registration. If you&#39;d like to you can add more specific things that you have heard of (e.g. the Open Science Framework).</p>
+
+<p>Then draw relationships between them, for example:</p>
+
+<ul>
+<li>publication bias --rewards--&gt; p-hacking</li>
+<li>pre-registration --prevents--&gt; p-hacking</li>
+<li>OSF --tool used for--&gt; pre-registration</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What is reproducibility?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='What do we mean by the &quot;Same Result&quot;'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='The reproducibility crisis'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Most researchers think there is a problem with reproducibility'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Most researchers have failed to reproduce a result'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Why did it take us so long to notice?'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Why is it happening?'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Why is it happening?'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='HARKing = Hypothesising After Results are Known'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='What are the chances?'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Publication Bias'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Discussion!'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Tools and practices to aid us in research'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Make analysis available'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Version Control'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Pre-registration'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='<a href="https://cos.io/rr/">Registered reports</a>'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Draw a &quot;concept map&quot; about reproducibility'>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../librariesNew/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="../librariesNew/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
